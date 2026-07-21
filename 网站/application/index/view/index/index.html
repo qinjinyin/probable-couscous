@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+{include file="public/head"}
+<script type="text/javascript">
+function zj_sub(url) {
+    alert(1)
+}
+</script>
+<meta name="referrer" content="no-referrer">
+
+<body>
+    {include file="public/menu"}
+    {include file="public/header"}
+    <div class="lime-container">
+        <div class="lime-body">
+            <div class="container">
+                <div class="row">
+                    {eq name="indexnoticemodel" value="0"}
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{$notice.title}</h5>
+                                <div>
+                                    {$notice.notice}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {/eq}
+                </div>
+                <div class="row">
+                    {eq name="indexggmodel" value="0"}
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                {volist name="glist" id="gao"}
+                                <a href="{$gao.g_url}" target="_blank"><img src="{$gao.g_img}" style="width: 100%;margin-top: 5px;"></a>
+                                {/volist}
+                            </div>
+                        </div>
+                    </div>
+                    {/eq}
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">视频解析</h5>
+                                <div>
+                                    <br>
+                                    <input id="url" class="form-control mr-sm-2" placeholder="在此输入app内复制的连接" value="">
+                                    <button class="btn btn-primary" id="subjx" style="width: 100%;margin-top: 10px;">去水印</button>
+                                    <div id="player" style="display: none">
+                                        <video id="media" width="100%" height="400" controls style="margin-top: 10px;">
+                                            <source id="v1" src="" type="video/webm">
+                                        </video>
+                                    </div>
+                                    <div id="imageGallery" style="display: none; margin-top: 10px;"></div>
+                                </div>
+                                <br>
+                                <div class="accordion" id="accordionExample" style="display: none">
+                                    <div class="card">
+                                        <div class="card-header" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                            图片地址
+                                        </div>
+                                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                            <div class="card-body" id="imgurl">
+                                                封面图
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            视频地址
+                                        </div>
+                                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                            <div class="card-body" id="videourl">
+                                                123456
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        {eq name="indexjxmodel" value="0"}
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">最近解析</h5>
+                                <div>
+                                    
+                                    <div class="accordion" id="accordionExample">
+                                        {volist name="jxlog" id="logid"}
+                                        <div class="card">
+                                            <div class="card-header" id="heading{$logid.id}" data-toggle="collapse" data-target="#collapse{$logid.id}" aria-expanded="false" aria-controls="collapse{$logid.id}">
+                                                视频地址:<code>{$logid.jx_url}</code>点击查看封面
+                                            </div>
+                                            <div id="collapse{$logid.id}" class="collapse" aria-labelledby="heading{$logid.id}" data-parent="#accordionExample">
+                                                <div class="card-body" id="videourl">
+                                                    <img src="{$logid.jx_img}" style="width: 60%;height: 60%">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {/volist}
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        {/eq}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lime-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <span class="footer-text">{$info.banquan}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Javascripts -->
+    {include file="public/footer"}
+    <script type="text/javascript">
+    $("#subjx").click(function() {
+        var url = $("#url").val();
+        if (url == '') {
+            message('error', '解析地址不能为空');
+            return false;
+        }
+        $('#subjx').attr("disabled", true);
+        $("#subjx").html('<span class="spinner-border spinner-border-sm" role="code" aria-hidden="true"></span>正在解析，请稍后...');
+        $.ajax({
+            type: "post",
+            url: "jiexi.html",
+            dataType: "json",
+            data: { "url": url, },
+            async: true,
+            success: function(data) {
+                $("#subjx").html('去水印');
+                $('#subjx').removeAttr("disabled");
+                console.log(data);
+                if (data.code == 200) {
+                    message('success', data.msg);
+                    var isImage = (data.data.type === 'image');
+                    
+                    if (isImage) {
+                        $("#player").hide();
+                        $("#imageGallery").show();
+                        var galleryHtml = '';
+                        if (data.data.images && data.data.images.length > 0) {
+                            galleryHtml += '<div class="row">';
+                            for (var i = 0; i < data.data.images.length; i++) {
+                                galleryHtml += '<div class="col-md-4 col-sm-6" style="margin-bottom: 10px;">';
+                                galleryHtml += '<a href="' + data.data.images[i] + '" target="_blank">';
+                                galleryHtml += '<img src="' + data.data.images[i] + '" style="width: 100%; border: 1px solid #ddd; border-radius: 4px;" onerror="this.style.display=\'none\'">';
+                                galleryHtml += '</a></div>';
+                            }
+                            galleryHtml += '</div>';
+                        }
+                        $("#imageGallery").html(galleryHtml || '<p>暂无可显示的图片</p>');
+                    } else {
+                        $("#player").show();
+                        $("#imageGallery").hide();
+                        document.getElementById("v1").src = data.data.url;
+                        document.getElementById("media").load();
+                        document.getElementById("media").play();
+                    }
+                    $("#accordionExample").show();
+                    $("#imgurl").html('<code>' + data.data.cover + '</code>');
+                    $("#videourl").html('<code>' + data.data.url + '</code>');
+                } else if(data.code == 106){
+                    message('error', data.msg);
+                    setTimeout(function() {
+                            location.href = '/login.html';
+                        }, 1000);
+                }else {
+                    message('error', data.msg);
+                }
+
+            },
+            error: function() {
+                $("#subjx").html('去水印');
+                $('#subjx').removeAttr("disabled");
+                message('error', '请检查你的网络');
+            }
+        })
+        // $("#player").show();
+        // $("#jdata").html('<p style="margin-top:10px;">标题：xxx</p><p style="margin-top:10px; ">封面：xxx</p><p style="margin-top:10px; ">视频连接：xxx</p>');
+    })
+    </script>
+</body>
+
+</html>

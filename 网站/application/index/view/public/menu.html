@@ -1,0 +1,48 @@
+<div class="lime-sidebar">
+            <div class="lime-sidebar-inner slimscroll">
+                <ul class="accordion-menu">
+                    <li class="sidebar-title">
+                        首页
+                    </li>
+                    <li>
+                        <a href="index.html" {if $actionname == 'index' && $contrname == 'Index' } class="active" {/if}><i class="material-icons">dashboard</i>首页</a>
+                    </li>
+                    
+                    <li class="sidebar-title">
+                        登录/注册
+                    </li>
+                    {empty name="Request.session.userid"}
+                        <li>
+                            <a href="/login.html" {if $actionname == 'index' && $contrname == 'Login' } class="active" {/if}><i class="material-icons">person_outline</i>登录</a>
+                        </li>
+                        <li>
+                            <a href="/register.html" {if $actionname == 'register' && $contrname == 'Login' } class="active" {/if}><i class="material-icons">person_outline</i>注册</a>
+                        </li>
+                    {/empty}
+                    {notempty name="Request.session.userid"}
+                    <li>
+                        <a href="/user.html" {if $actionname == 'index' && $contrname == 'User' } class="active" {/if}><i class="material-icons">person_outline</i>个人中心</a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a href="/vip.html" {if $actionname == 'vip' && $contrname == 'User' } class="active" {/if}><i class="material-icons">bar_chart</i>开通会员</a>
+                    </li>
+                    <li>
+                        <a href="/loginout.html"><i class="material-icons">input</i>退出登录</a>
+                    </li>
+
+                    <li class="sidebar-title">
+                        开发者中心
+                    </li>
+                    
+                    <li>
+                        <a href="/getapi.html" {if $actionname == 'getapi' && $contrname == 'User' } class="active" {/if}><i class="material-icons">apps</i>接口查询</a>
+                    </li>
+                    <li>
+                        <a href="open.html" {if $actionname == 'open' && $contrname == 'User' } class="active" {/if}><i class="material-icons">code</i>开发文档</a>
+                    </li>
+                    {/notempty}
+                </ul>
+            </div>
+        </div>

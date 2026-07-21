@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+{include file="public/head"}
+</head>
+
+<body>
+    <div class="main-wrapper" id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <div class="preloader">
+            <div class="loader">
+                <div class="loader__figure"></div>
+                <p class="loader__label">LanShou Admin</p>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        {include file="public/header"}
+        <!-- ============================================================== -->
+        <!-- Sidebar scss in sidebar.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Sidebar scss in sidebar.scss -->
+        <!-- ============================================================== -->
+        {include file="public/leftmenu"}
+        <!-- ============================================================== -->
+        <!-- Sidebar scss in sidebar.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Title and breadcrumb -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid scss in scafholding.scss -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col s12">
+                        <div class="card">
+                            <div class="card-content">
+                                <h5 class="card-title">修改密码</h5>
+                                <p>修改网站管理员信息</p>
+                                <form class="formValidate" id="formdata">
+                                   
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <label for="uname">账号*</label>
+                                            <input id="username" name="username" type="text" data-error=".errorTxt1" value="{$re.username}">
+                                            <div class="errorTxt1"></div>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <label for="uname">密码* 如需修改请直接填写</label>
+                                            <input id="password" name="password" type="password" data-error=".errorTxt1" value="">
+                                            <div class="errorTxt1"></div>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <label for="cemail">昵称 *</label>
+                                            <input id="nickname" type="text" name="nickname" data-error=".errorTxt2" value="{$re.nickname}">
+                                            <div class="errorTxt2"></div>
+                                        </div>
+                                        
+                                        <div class="input-field col s12">
+                                            <label for="cemail">qq *</label>
+                                            <input id="qq" type="text" name="qq" data-error=".errorTxt2" value="{$re.qq}">
+                                            <div class="errorTxt2"></div>
+                                        </div>
+                                       
+                                        
+                                        <div class="input-field col s12">
+                                            <button class="btn waves-effect waves-light right submit" type="button" onclick="formdata()">提交</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <!-- ============================================================== -->
+            <!-- Container fluid scss in scafholding.scss -->
+            <!-- ============================================================== -->
+            <footer class="center-align m-b-30">Theme by <a href="https://xx.muzzz.cn">LanShou</a>.</footer>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+        {include file="public/setting"}
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- All Required js -->
+    <!-- ============================================================== -->
+    {include file="public/footer"}
+    <script src="__Admin__/js/uppass.js"></script>
+    
+</body>
+
+</html>

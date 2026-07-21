@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+{include file="public/head"}
+</head>
+
+<body>
+    <div class="main-wrapper" id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <div class="preloader">
+            <div class="loader">
+                <div class="loader__figure"></div>
+                <p class="loader__label">LanShou Admin</p>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        {include file="public/header"}
+        <!-- ============================================================== -->
+        <!-- Sidebar scss in sidebar.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Sidebar scss in sidebar.scss -->
+        <!-- ============================================================== -->
+        {include file="public/leftmenu"}
+        <!-- ============================================================== -->
+        <!-- Sidebar scss in sidebar.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Title and breadcrumb -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid scss in scafholding.scss -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col s12">
+                        <div class="card">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col s12">
+                                        <div class="card">
+                                            <form class="h-form b-form" id="formdata">
+                                                <div class="form-body">
+                                                    <div class="divider"></div>
+                                                    <div class="card-content">
+                                                        <h6 class="font-medium">修改支付通道</h6>
+                                                        <p>易支付通道修改必须按照要求，否则会出错，请详细查看这几行文字！<br>
+                                                            1.<code>公钥(或者填写支付的TOKEN)</code>填写易支付的<code>支付地址</code>
+                                                        <br>
+                                                            2.<code>秘钥</code>填写玖讯支付的<code>用户秘钥</code>
+                                                        <br>
+                                                            3.<code>APPID</code>填写玖讯支付的<code>用户ID</code>
+                                                        <br>
+                                                            4.<code>
+同步地址</code>可以填写用户支付后跳转的链接，比如调回用户中心就写<code>http(s)://xxx(你的域名)/user.html</code>
+<br>
+                                                            5.<code>
+异步地址</code>这个说白了就是发送通知的，<code>不建议修改！</code></p>
+                                                        <div class="col s12">
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col s3">
+                                                                <div class="h-form-label">
+                                                                    <label for="icon_prefix1">支付名称</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="input-field col s9">
+                                                                <input id="pay_name" name="pay_name" value="{$pd.pay_name}" type="text" class="validate" placeholder="请填写接口名称">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col s3">
+                                                                <div class="h-form-label">
+                                                                    <label for="icon_prefix1">支付标识</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="input-field col s9">
+                                                                <input id="pay_bs" name="pay_bs" value="{$pd.pay_bs}" type="text" class="validate" placeholder="请填写接口标识">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col s3">
+                                                                <div class="h-form-label">
+                                                                    <label for="icon_prefix1">支付描述</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="input-field col s9">
+                                                                <input id="pay_desc" name="pay_desc" value="{$pd.pay_desc}" type="text" class="validate" placeholder="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col s3">
+                                                                <div class="h-form-label">
+                                                                    <label for="icon_prefix1">公钥(或者填写支付的TOKEN)</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="input-field col s9">
+                                                                <input id="public_key" name="pay_public_key" value="{$pd.pay_public_key}" type="text" class="validate" placeholder="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col s3">
+                                                                <div class="h-form-label">
+                                                                    <label for="icon_prefix1">秘钥</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="input-field col s9">
+                                                                <input id="private_key" name="pay_private_key" value="" type="text" class="validate" placeholder="不做展示，如需修改请填写">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col s3">
+                                                                <div class="h-form-label">
+                                                                    <label for="icon_prefix1">APPID</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="input-field col s9">
+                                                                <input id="pay_appid" name="pay_appid" value="{$pd.pay_appid}" type="text" class="validate" placeholder="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col s3">
+                                                                <div class="h-form-label">
+                                                                    <label for="icon_prefix1">同步地址</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="input-field col s9">
+                                                                <input id="pay_return_url" name="pay_return_url" value="{$pd.pay_return_url}" type="text" class="validate" placeholder="请填写同步地址">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col s3">
+                                                                <div class="h-form-label">
+                                                                    <label for="icon_prefix1">异步地址</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="input-field col s9">
+                                                                <input id="pay_notify_url" name="pay_notify_url" value="{$pd.pay_notify_url}" type="text" class="validate" placeholder="请填写异步回调地址">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col s3">
+                                                                <div class="h-form-label">
+                                                                    <label>是否启用</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="input-field col s9">
+                                                                <p>
+                                                                    <label>
+                                                                        <input name="isuse" type="radio" value="1" checked />
+                                                                        <span>是</span>
+                                                                    </label>
+                                                                </p>
+                                                                <p>
+                                                                    <label>
+                                                                        <input name="isuse" value="0" type="radio" />
+                                                                        <span>否</span>
+                                                                    </label>
+                                                                    <input name="pid" id="pid" type="hidden" value="{$pd.id}" />
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="divider"></div>
+                                        </div>
+                                        <div class="divider"></div>
+                                        <div class="card-content">
+                                            <div class="form-action">
+                                                <button class="btn cyan waves-effect waves-light" type="button" id="update" onclick="formdata()">修改
+                                                </button>
+                                                <a onclick="javascript:history.go(-1);" class="btn waves-effect waves-light grey darken-4" >取消
+                                        </a>
+                                            </div>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Container fluid scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <footer class="center-align m-b-30">Theme by <a href="https://xx.muzzz.cn">LanShou</a>.</footer>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Page wrapper scss in scafholding.scss -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Right Sidebar -->
+    <!-- ============================================================== -->
+    {include file="public/setting"}
+    <!-- ============================================================== -->
+    <!-- Right Sidebar -->
+    <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- All Required js -->
+    <!-- ============================================================== -->
+    {include file="public/footer"}
+    <script src="__Admin__/js/editpay.js"></script>
+    
+</body>
+
+</html>

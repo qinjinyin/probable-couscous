@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+{include file="public/head"}
+</head>
+
+<body>
+    <div class="main-wrapper" id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <div class="preloader">
+            <div class="loader">
+                <div class="loader__figure"></div>
+                <p class="loader__label">LanShou Admin</p>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        {include file="public/header"}
+        <!-- ============================================================== -->
+        <!-- Sidebar scss in sidebar.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Sidebar scss in sidebar.scss -->
+        <!-- ============================================================== -->
+        {include file="public/leftmenu"}
+        <!-- ============================================================== -->
+        <!-- Sidebar scss in sidebar.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Title and breadcrumb -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid scss in scafholding.scss -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col s12">
+                        <div class="card">
+                            <div class="card-content">
+                                <h5 class="card-title">站点基础信息</h5>
+                                <p>修改网站基础信息</p>
+                                <form class="formValidate" id="formdata">
+                                   
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <label for="uname">文字logo*</label>
+                                            <input id="logo" name="logo" type="text" data-error=".errorTxt1" value="{$re.logo}">
+                                            <div class="errorTxt1"></div>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <label for="uname">网站标题*</label>
+                                            <input id="title" name="title" type="text" data-error=".errorTxt1" value="{$re.title}">
+                                            <div class="errorTxt1"></div>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <label for="cemail">网站关键词 *</label>
+                                            <input id="keywords" type="text" name="keywords" data-error=".errorTxt2" value="{$re.keywords}">
+                                            <div class="errorTxt2"></div>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <label for="cemail">网站描述 *</label>
+                                            <input id="descc" type="text" name="descc" data-error=".errorTxt2" value="{$re.descc}">
+                                            <div class="errorTxt2"></div>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <label for="cemail">版权信息 *</label>
+                                            <input id="banquan" type="text" name="banquan" data-error=".errorTxt2" value="<?php echo htmlentities($re['banquan']);?>">
+                                            <div class="errorTxt2"></div>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <label for="cemail">统计代码 *</label>
+                                            <input id="tcode" type="text" name="tcode" data-error=".errorTxt2" value="<?php echo htmlentities($re['tcode']);?>">
+                                            <div class="errorTxt2"></div>
+                                        </div>
+                                        
+                                        <div class="input-field col s12">
+                                            <button class="btn waves-effect waves-light right submit" type="button" onclick="formdata()">提交</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <!-- ============================================================== -->
+            <!-- Container fluid scss in scafholding.scss -->
+            <!-- ============================================================== -->
+            <footer class="center-align m-b-30">Theme by <a href="https://xx.muzzz.cn">LanShou</a>.</footer>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+        {include file="public/setting"}
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- All Required js -->
+    <!-- ============================================================== -->
+    {include file="public/footer"}
+    <script src="__Admin__/js/system.js"></script>
+    
+</body>
+
+</html>

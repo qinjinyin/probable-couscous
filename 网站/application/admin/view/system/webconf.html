@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+{include file="public/head"}
+
+</head>
+
+<body>
+    <div class="main-wrapper" id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <div class="preloader">
+            <div class="loader">
+                <div class="loader__figure"></div>
+                <p class="loader__label">LanShou Admin</p>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        {include file="public/header"}
+        <!-- ============================================================== -->
+        <!-- Sidebar scss in sidebar.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Sidebar scss in sidebar.scss -->
+        <!-- ============================================================== -->
+        {include file="public/leftmenu"}
+        <!-- ============================================================== -->
+        <!-- Sidebar scss in sidebar.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Title and breadcrumb -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid scss in scafholding.scss -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col s12">
+                        <div class="card">
+                            
+                            <div class="card-content">
+                                <h5 class="card-title">网站模块设置</h5>
+                                <p>任何一项不填写或者为空将使用系统默认配置，所以请确保每一项不为空且为说明参数，没个输入框下都会有详细的说明</p>
+                                 <form class="formValidate" id="formdata">
+                                <div class="row">
+                                    {volist name="re" id="vo"}
+                                    <div class="input-field col s12">
+                                        <label for="uname">{$vo.dsp_title}* </label>
+                                        <input id="{$vo.dsp_name}" name="{$vo.dsp_name}" type="text" data-error=".errorTxt1" value="{$vo.dsp_value}">
+                                        <div class="errorTxt1">{$vo.dsp_explain}</div>
+                                    </div>
+                                    {/volist}
+                                    <div class="input-field col s12">
+                                        <button class="btn waves-effect waves-light right submit" type="button" onclick="formdata()">提交</button>
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- Container fluid scss in scafholding.scss -->
+            <!-- ============================================================== -->
+            <footer class="center-align m-b-30">Theme by <a href="https://xx.muzzz.cn">LanShou</a>.</footer>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+        {include file="public/setting"}
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- All Required js -->
+    <!-- ============================================================== -->
+    {include file="public/footer"}
+    
+    <script src="__Admin__/js/config.js"></script>
+</body>
+
+</html>

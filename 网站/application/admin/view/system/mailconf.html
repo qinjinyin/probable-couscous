@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+{include file="public/head"}
+
+</head>
+
+<body>
+    <div class="main-wrapper" id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <div class="preloader">
+            <div class="loader">
+                <div class="loader__figure"></div>
+                <p class="loader__label">LanShou Admin</p>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        {include file="public/header"}
+        <!-- ============================================================== -->
+        <!-- Sidebar scss in sidebar.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Sidebar scss in sidebar.scss -->
+        <!-- ============================================================== -->
+        {include file="public/leftmenu"}
+        <!-- ============================================================== -->
+        <!-- Sidebar scss in sidebar.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Title and breadcrumb -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid scss in scafholding.scss -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col s12">
+                        <div class="card">
+                            <form id="formdata">
+                            <div class="card-content">
+                                <h5 class="card-title">邮件设置</h5>
+                                <p>编辑发件设置</p>
+                                <!--  <form class="formValidate" id="formdata"> -->
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <label for="uname">发件用户名* </label>
+                                        <input id="send_sys_mail" name="send_sys_mail" type="text" data-error=".errorTxt1" value="{$re.send_sys_mail}">
+                                        <div class="errorTxt1"></div>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <label for="uname">发件密码* </label>
+                                        <input id="send_sys_pwd" name="send_sys_pwd" type="password" data-error=".errorTxt1" value="{$re.send_sys_pwd}">
+                                        <div class="errorTxt1">QQ邮箱不是登录密码，请注意</div>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <label for="uname">发件昵称* </label>
+                                        <input id="send_sys_name" name="send_sys_name" type="text" data-error=".errorTxt1" value="{$re.send_sys_name}">
+                                        <div class="errorTxt1"></div>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <label for="uname">发件服务器* </label>
+                                        <input id="send_sys_smtp" name="send_sys_smtp" type="text" data-error=".errorTxt1" value="{$re.send_sys_smtp}">
+                                        <div class="errorTxt1"></div>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <label for="uname">端口* </label>
+                                        <input id="send_sys_port" name="send_sys_port" type="text" data-error=".errorTxt1" value="{$re.send_sys_port}">
+                                        <div class="errorTxt1"></div>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <button class="btn waves-effect waves-light right submit" type="button" onclick="formdata()">提交</button>
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- Container fluid scss in scafholding.scss -->
+            <!-- ============================================================== -->
+            <footer class="center-align m-b-30">Theme by <a href="https://xx.muzzz.cn">LanShou</a>.</footer>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+        {include file="public/setting"}
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- All Required js -->
+    <!-- ============================================================== -->
+    {include file="public/footer"}
+    
+    <script src="__Admin__/js/mail.js"></script>
+</body>
+
+</html>

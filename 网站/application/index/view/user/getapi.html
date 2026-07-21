@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+{include file="index@public/head"}
+
+    <link href="//at.alicdn.com/t/font_1594777_a0vg7rqmu3s.css" rel="stylesheet">
+
+<body>
+    {include file="index@public/menu"}
+    {include file="index@public/header"}
+    <div class="lime-container">
+        <div class="lime-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">申请接口</h5>
+                                <div>
+                                    <p>尊敬的{$Request.session.mail}，请点击下方<code>申请接口</code>按钮来申请你的<code>接口信息</code></p>
+                                    <button type="button" id="getapi" class="btn btn-primary btn-lg btn-block"  {notempty name="uinfo.api_token"}disabled="disabled"{/notempty}>申请接口</button>
+                                    {notempty name="uinfo.api_token"}
+                                    <a href="/open.html" class="btn btn-success btn-lg btn-block">阅读开发文档</a>
+                                    {/notempty}
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        {notempty name="uinfo.api_token"}
+                         <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">申请接口</h5>
+                                <div>
+
+                                    <p>尊敬的{$Request.session.mail}，您的接口信息如下：
+                                    </p>
+                                    <p>clientId：<code>{$Request.session.userid}</code></p>
+                                    <p>clientSecretKey：<code>{$uinfo.api_token}</code></p>
+                                    <!--<p>接口地址：<code>{php}
+                                    $http_type = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')) ? 'https://' : 'http://';
+                                    echo $http_type . $_SERVER['HTTP_HOST'];{/php}/api/dsp/{$uinfo.api_token}/{$Request.session.userid}/?url=短视频链接</code></p>
+                                    <p>接口秘钥：<code>{$uinfo.api_token}</code></p>/-->
+                                </div>
+                            </div>
+                        </div>
+                        {/notempty}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lime-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <span class="footer-text">{$info.banquan}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Javascripts -->
+    {include file="index@public/footer"}
+    <script type="text/javascript">
+        $("#getapi").click(function(){
+            $.ajax({
+                type: "post",
+                url: "settoken",
+                dataType: "json",
+                data : { "type" :"settoken"},
+                async: true,
+                success: function(data) {
+                    message('success',data.msg);
+                    setTimeout(function() {
+                        location.href = data.url;
+                    }, 1000);
+                },
+                error: function() {
+                    
+                    message('error', '请检查你的网络');
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

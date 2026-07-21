@@ -1,0 +1,33 @@
+<div class="lime-header">
+        <nav class="navbar navbar-expand-lg">
+            <section class="material-design-hamburger navigation-toggle">
+                <a href="javascript:void(0)" class="button-collapse material-design-hamburger__icon">
+                    <span class="material-design-hamburger__layer"></span>
+                </a>
+            </section>
+            <a class="navbar-brand" href="/index.html">{$info.logo}</a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        {empty name="Request.session.userid"}
+                            <a class="nav-link dropdown-toggle" href="/login.html" role="button" >
+                            <i class="material-icons">person_outline</i>登录/注册
+                            </a>
+                        {/empty}
+                        {notempty name="Request.session.userid"}
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">person_outline</i>欢迎回来：{$Request.session.mail}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a class="dropdown-item" href="/user.html">用户面板</a></li>
+                            <li><a class="dropdown-item" href="/setting.html">修改密码</a></li>
+                            <li class="divider"></li>
+                            <li><a class="dropdown-item" href="/loginout.html">退出登录</a></li>
+                        </ul>
+                        {/notempty}
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>

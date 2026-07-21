@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+{include file="public/head"}
+</head>
+
+<body>
+    <div class="main-wrapper" id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <div class="preloader">
+            <div class="loader">
+                <div class="loader__figure"></div>
+                <p class="loader__label">LanShou Admin</p>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        {include file="public/header"}
+        <!-- ============================================================== -->
+        <!-- Sidebar scss in sidebar.scss -->
+        <!-- ============================================================== -->
+        
+        <!-- ============================================================== -->
+        <!-- Sidebar scss in sidebar.scss -->
+        <!-- ============================================================== -->
+        {include file="public/leftmenu"}
+        <!-- ============================================================== -->
+        <!-- Sidebar scss in sidebar.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Title and breadcrumb -->
+            <!-- ============================================================== -->
+           
+            <!-- ============================================================== -->
+            <!-- Container fluid scss in scafholding.scss -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col s12">
+                        <div class="card">
+                            <div class="container-fluid">
+                <div class="row">
+                    
+                    <div class="col s12">
+                        <div class="card">
+                            
+                            <form class="h-form b-form" id="formdata">
+                                <div class="form-body">
+                                    <div class="divider"></div>
+                                    <div class="card-content">
+                                        <h6 class="font-medium">修改会员方式</h6>
+                                         <div class="col s12">
+                        
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s3">
+                                                <div class="h-form-label">
+                                                    <label for="icon_prefix1">VIP名称</label>
+                                                </div>
+                                            </div>
+                                            <div class="input-field col s9">
+                                                <input name="vip_name" id="vip_name" value="{$re.vip_name}" type="text" class="validate" placeholder="请填VIP名称">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s3">
+                                                <div class="h-form-label">
+                                                    <label for="icon_prefix1">VIP名称</label>
+                                                </div>
+                                            </div>
+                                            <div class="input-field col s9">
+                                                <!-- <i class="material-icons prefix">account_circle</i> -->
+                                                <img class="material-icons prefix" src="{$re.vip_img}" style="height: 25px;width: 25px;">
+                                                <input name="vip_img" id="vip_img" value="{$re.vip_img}" type="text" class="validate">
+                                                <label for="icon_prefix" class="">请填写绝对路径或带http(s):的外链地址</label>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col s3">
+                                                <div class="h-form-label">
+                                                    <label for="icon_prefix1">VIP说明</label>
+                                                </div>
+                                            </div>
+                                            <div class="input-field col s9">
+                                                        <textarea name="textv" id="textarea1" class="materialize-textarea"><?php echo htmlentities($re['vip_desc']);?></textarea>
+                                                        
+                                                    </div>
+                                        </div>
+                                        
+                                                
+                                        
+                                        <div class="row">
+                                            <div class="col s3">
+                                                <div class="h-form-label">
+                                                    <label for="icon_prefix1">VIP价格（实际支付的价格）</label>
+                                                </div>
+                                            </div>
+                                            
+                                                <div class="input-field col s9">
+                                                    <input name="vip_price" id="vip_price" value="{$re.vip_price}" type="text" class="validate" placeholder="">
+                                               
+                                            </div>
+                                        </div>
+                                         <div class="row">
+                                            <div class="col s3">
+                                                <div class="h-form-label">
+                                                    <label for="icon_prefix1">VIP原价格（展示原价）</label>
+                                                </div>
+                                            </div>
+                                            
+                                                <div class="input-field col s9">
+                                                    <input name="vip_pirce_old" id="vip_pirce_old" value="{$re.vip_pirce_old}" type="text" class="validate" placeholder="">
+                                               
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s3">
+                                                <div class="h-form-label">
+                                                    <label for="icon_prefix1">VIP时长（即付费一次赠送多长时长，按天）</label>
+                                                </div>
+                                            </div>
+                                            
+                                                <div class="input-field col s9">
+                                                    <input name="vip_day" id="vip_day" value="{$re.vip_day}" type="text" class="validate" placeholder="">
+                                               
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col s3">
+                                                <div class="h-form-label">
+                                                    <label>是否推荐</label>
+                                                </div>
+                                            </div>
+                                            <div class="input-field col s9">
+                                                <p>
+                                                    <label>
+                                                        <input name="istj" type="radio" value="1" {eq name="re.vip_is_tj" value="1" }checked{/eq} />
+                                                        <span>是</span>
+                                                    </label>
+                                                </p>
+                                                <p>
+                                                    <label>
+                                                        <input name="istj" value="0" type="radio" {eq name="re.vip_is_tj" value="0" }checked{/eq} />
+                                                        <span>否</span>
+                                                    </label>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <input name="vid" id="vid" type="hidden" value="{$re.id}" />
+                                        
+                                    </div>
+                                    
+                                    </div>
+                                    <div class="divider"></div>
+                                    
+                                </div>
+                                <div class="divider"></div>
+                                <div class="card-content">
+                                    <div class="form-action">
+                                        <button class="btn cyan waves-effect waves-light" type="button" onclick="formdata()">修改
+                                        </button>
+                                       <a onclick="javascript:history.go(-1);" class="btn waves-effect waves-light grey darken-4" >取消
+                                        </a>
+                                    </div>
+                                </div>
+                            </form>
+                            
+                        </div>
+                    </div>
+                    
+                   
+                </div>
+            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <!-- ============================================================== -->
+            <!-- Container fluid scss in scafholding.scss -->
+            <!-- ============================================================== -->
+            <footer class="center-align m-b-30">Theme by <a href="https://xx.muzzz.cn">LanShou</a>.</footer>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+        {include file="public/setting"}
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- All Required js -->
+    <!-- ============================================================== -->
+    {include file="public/footer"}
+    <script src="__Admin__/js/editvip.js"></script>
+    
+</body>
+
+</html>

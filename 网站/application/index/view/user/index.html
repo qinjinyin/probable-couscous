@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+{include file="index@public/head"}
+
+    <link href="//at.alicdn.com/t/font_1594777_a0vg7rqmu3s.css" rel="stylesheet">
+
+<body>
+    {include file="index@public/menu"}
+    {include file="index@public/header"}
+    <div class="lime-container">
+        <div class="lime-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card bg-info text-white">
+                            <div class="card-body">
+                                <div class="dashboard-info row">
+                                    <div class="info-text col-md-6">
+                                        <h5 class="card-title">尊敬的：
+                                       
+                                        {$Request.session.mail}
+                                         <!-- 判断会员身份 -->
+                                        {eq name="userinfo.vip_type" value="1"}
+                                        <img src="__Home__/vip/qtvip.png" style="height: 25px;width: 25px">
+                                        {/eq}
+                                        {eq name="userinfo.vip_type" value="2"}
+                                        <img src="__Home__/vip/byvip.png" style="height: 25px;width: 25px">
+                                        {/eq}
+                                        {eq name="userinfo.vip_type" value="2"}
+                                        <img src="__Home__/vip/hjvip.png" style="height: 25px;width: 25px">
+                                        {/eq}
+                                        ，开通会员!</h5>
+                                        {eq name="userinfo.is_vip" value="1"}
+                                        <p>开通会员享受本站所有特权！</p>
+                                        {/eq}
+                                        {eq name="userinfo.is_vip" value="0"}
+                                        <p>您正在享受以下特权：</p>
+                                        {/eq}
+                                        <ul>
+                                             <li>到期时间：{eq name="userinfo.is_vip" value="0"}
+                                                {$userinfo.vip_endtime|date='Y-m-d H:i:s',###}
+                                            {/eq}</li>
+                                            <li>不限次数解析</li>
+                                            <li>vip独特标识</li>
+                                            <li>本站接口调用方式</li>
+                                        </ul>
+                                        <a href="/vip.html" class="btn btn-warning m-t-xs">立即开通</a>
+                                    </div>
+                                    <div class="info-image col-md-6"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card stat-card">
+                            <div class="card-body">
+                                <h5 class="card-title">是否会员</h5>
+                                <h2 class="float-right"> {eq name="userinfo.vip_type" value="0"}
+                                       否
+                                        {/eq}{eq name="userinfo.vip_type" value="1"}
+                                        是
+                                        {/eq}
+                                        {eq name="userinfo.vip_type" value="2"}
+                                       是
+                                        {/eq}
+                                        {eq name="userinfo.vip_type" value="3"}
+                                        是
+                                        {/eq}</h2>
+                                <p>会员身份
+                                     {eq name="userinfo.vip_type" value="1"}:
+                                        <img src="__Home__/vip/qtvip.png" style="height: 25px;width: 25px;margin-top: -5px;">
+                                        {/eq}
+                                        {eq name="userinfo.vip_type" value="2"}:
+                                        <img src="__Home__/vip/byvip.png" style="height: 25px;width: 25px;margin-top: -5px;">
+                                        {/eq}
+                                        {eq name="userinfo.vip_type" value="2"}:
+                                        <img src="__Home__/vip/hjvip.png" style="height: 25px;width: 25px;margin-top: -5px;">
+                                        {/eq}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card stat-card">
+                            <div class="card-body">
+                                <h5 class="card-title">剩余次数</h5>
+                                <h2 class="float-right">{$userinfo.day_count}</h2>
+                                <p>每天可用次数</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card stat-card">
+                            <div class="card-body">
+                                <h5 class="card-title">接口权限</h5>
+                                <h2 class="float-right"><a href="/getapi.html" class="btn btn-warning m-t-xs" style="margin-top: -5px;">申请</a></h2>
+                                <p>请到开发者中心查看是否拥有权限</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">本站已支持的解析</h5>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">ID</th>
+                                                <th scope="col">名称</th>
+                                                <th scope="col">状态</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {volist name="apilist" id="ap"}
+                                            <tr>
+                                                <td>{$ap.id}</td>
+                                                <td><img src="{$ap.api_apiimg}" style="height: 25px;width: 25px">{$ap.api_title}</td>
+                                                <td>
+                                                    {eq name="ap.api_sta" value="0"}
+                                                    <span class="badge badge-success">正常</span>
+                                                    {/eq}
+                                                    {eq name="ap.api_sta" value="1"}
+                                                    <span class="badge badge-error">正常</span>
+                                                    {/eq}
+                                                </td>
+                                            </tr>
+                                            {/volist}
+                                            <!-- <tr>
+                                                <td>0759</td>
+                                                <td><img src="__Home__/images/weishi.png" style="height: 25px;width: 25px">微视</td>
+                                                <td><span class="badge badge-success">正常</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>0741</td>
+                                                <td><img src="__Home__/images/pipixia.png" style="height: 25px;width: 25px">皮皮虾</td>
+                                                <td><span class="badge badge-success">正常</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>0740</td>
+                                                <td><img src="__Home__/images/zuiyou.png" style="height: 25px;width: 25px">最右</td>
+                                                <td><span class="badge badge-success">正常</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>0740</td>
+                                                <td><img src="__Home__/images/toutiao.png" style="height: 25px;width: 25px">今日头条</td>
+                                                <td><span class="badge badge-success">正常</span></td>
+                                            </tr> -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">消费记录</h5>
+                                此处仅展示最近五条
+                                <div class="social-media-list">
+                                    {eq name="viplog" value="0"}
+                                    <div class="social-media-item">
+                                        这里什么都没有<br><a href="/vip.html" class="btn btn-warning m-t-xs">立即开通</a>
+                                    </div>
+                                    {/eq}
+                                    {volist name="viplog" id="vlog"}
+                                    <div class="social-media-item">
+                                        <div class="social-icon facebook">
+                                            <img src="__Home__/vip/hjvip.png" style="height: 25px;width: 25px">
+                                        </div>
+                                        <div class="social-text">
+                                            <p>{$vlog.log_text}</p>
+                                            <span>时间：{$vlog.log_time|date='Y-m-d H:i:s',###}</span>
+                                        </div>
+                                    </div>
+                                    {/volist}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">接口秘钥</h5>
+                                <div>
+                                    <p>拥有接口调用权限的可在此处查看接口地址以及秘钥</p>
+                                    <ul>
+                                        <li>接口地址：
+                                            
+                                            <code>
+                                                {eq name="userinfo.is_api" value="0"}
+                                                {php}
+                                            
+                                    $http_type = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')) ? 'https://' : 'http://';
+                                    echo $http_type . $_SERVER['HTTP_HOST'];{/php}/api/dsp/{$userinfo.api_token}/{$Request.session.userid}/?url=短视频链接</code>{/eq}{eq name="userinfo.is_api" value="1"}暂无权限{/eq}</li>
+                                        <li>clientSecretKey：{eq name="userinfo.is_api" value="0"}<code>{$userinfo.api_token}</code>{/eq}{eq name="userinfo.is_api" value="1"}暂无权限{/eq}</li>
+                                        <li>调用方式:<code>GET</code>{eq name="userinfo.is_api" value="1"}暂无权限{/eq}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lime-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <span class="footer-text">{$info.banquan}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Javascripts -->
+    {include file="index@public/footer"}
+</body>
+
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+
+{include file="public/head"}
+</head>
+
+<body>
+    <div class="main-wrapper" id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <div class="preloader">
+            <div class="loader">
+                <div class="loader__figure"></div>
+                <p class="loader__label">LanShou Admin</p>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        {include file="public/header"}
+        <!-- ============================================================== -->
+        <!-- Sidebar scss in sidebar.scss -->
+        <!-- ============================================================== -->
+        
+        <!-- ============================================================== -->
+        <!-- Sidebar scss in sidebar.scss -->
+        <!-- ============================================================== -->
+        {include file="public/leftmenu"}
+        <!-- ============================================================== -->
+        <!-- Sidebar scss in sidebar.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Title and breadcrumb -->
+            <!-- ============================================================== -->
+           
+            <!-- ============================================================== -->
+            <!-- Container fluid scss in scafholding.scss -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col s12">
+                        <div class="card">
+                            <div class="container-fluid">
+                <div class="row">
+                    
+                    <div class="col s12">
+                        <div class="card">
+                            
+                            <form class="h-form b-form">
+                                <div class="form-body">
+                                    <div class="divider"></div>
+                                    <div class="card-content">
+                                        <h6 class="font-medium">新增接口</h6>
+                                         <div class="col s12">
+                        
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s3">
+                                                <div class="h-form-label">
+                                                    <label for="icon_prefix1">接口名称</label>
+                                                </div>
+                                            </div>
+                                            <div class="input-field col s9">
+                                                <input id="apiname" type="text" class="validate" placeholder="请填写接口名称">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s3">
+                                                <div class="h-form-label">
+                                                    <label for="icon_prefix1">接口标识</label>
+                                                </div>
+                                            </div>
+                                            <div class="input-field col s9">
+                                                <input id="apibs" type="text" class="validate" placeholder="请填写接口标识">
+                                            </div>
+                                        </div>
+                                        
+                                                <div class="row">
+                                            <div class="col s3">
+                                                <div class="h-form-label">
+                                                    <label for="icon_prefix1">接口图标</label>
+                                                </div>
+                                            </div>
+                                            
+                                                <div class="input-field col s9">
+                                                    <input id="apiimg" type="text" class="validate" placeholder="远程图片请放链接，本地图片请自行上传至public\static\home\assets\images\  ">
+                                               
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s3">
+                                                <div class="h-form-label">
+                                                    <label>是否启用</label>
+                                                </div>
+                                            </div>
+                                            <div class="input-field col s9">
+                                                <p>
+                                                    <label>
+                                                        <input name="isuse" type="radio" value="0" checked />
+                                                        <span>是</span>
+                                                    </label>
+                                                </p>
+                                                <p>
+                                                    <label>
+                                                        <input name="isuse" value="1" type="radio" />
+                                                        <span>否</span>
+                                                    </label>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s3">
+                                                <div class="h-form-label">
+                                                    <label>是否本地</label>
+                                                </div>
+                                            </div>
+                                            <div class="input-field col s9">
+                                                <p>
+                                                    <label>
+                                                        <input name="islocal" value="0" type="radio" checked />
+                                                        <span>是</span>
+                                                    </label>
+                                                </p>
+                                                <p>
+                                                    <label>
+                                                        <input name="islocal" value="" type="radio" />
+                                                        <span>否</span>
+                                                    </label>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <h6 class="font-medium">以下选项仅在接口为远程的时候有效</h6>
+
+                                            <div class="col s12 l6">
+                                                <div class="row">
+                                                    <div class="col s3">
+                                                        <div class="h-form-label">
+                                                            <label for="f-name">接口地址</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-field col s9">
+                                                        <input id="apiurl" value="" type="text" placeholder="远程请求接口地址">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col s12 l6">
+                                                <div class="row">
+                                                    <div class="col s3">
+                                                        <div class="h-form-label">
+                                                            <label for="l-name">返回数组</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-field col s9">
+                                                        <input id="rarray" value="" type="text" placeholder="接口返回的数组">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s12 l6">
+                                                <div class="row">
+                                                    <div class="col s3">
+                                                        <div class="h-form-label">
+                                                            <label for="uname">返回图片</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-field col s9">
+                                                        <input id="rimg" value="" type="text" placeholder="接口返回数组里的图片">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col s12 l6">
+                                                <div class="row">
+                                                    <div class="col s3">
+                                                        <div class="h-form-label">
+                                                            <label for="nname">返回视频</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-field col s9">
+                                                        <input id="rvideo" value="" type="text" placeholder="接口返回数组里的视频">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s12 l6">
+                                                <div class="row">
+                                                    <div class="col s3">
+                                                        <div class="h-form-label">
+                                                            <label for="uname">返回标题</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-field col s9">
+                                                        <input id="rtitle" value="" type="text" placeholder="接口返回数组里的标题">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <input id="act" value="add" type="hidden" >
+                                    <input id="iid" value="{empty name="iid"}0{else}{$inf.id}{/empty}" type="hidden" >
+                                    </div>
+                                    <div class="divider"></div>
+                                    
+                                </div>
+                                <div class="divider"></div>
+                                <div class="card-content">
+                                    <div class="form-action">
+                                        <button class="btn cyan waves-effect waves-light" type="button" id="add">新增
+                                        </button>
+                                        <a onclick="javascript:history.go(-1);" class="btn waves-effect waves-light grey darken-4" >取消
+                                        </a>
+                                    </div>
+                                </div>
+                            </form>
+                            
+                        </div>
+                    </div>
+                    
+                   
+                </div>
+            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <!-- ============================================================== -->
+            <!-- Container fluid scss in scafholding.scss -->
+            <!-- ============================================================== -->
+            <footer class="center-align m-b-30">Theme by <a href="https://xx.muzzz.cn">LanShou</a>.</footer>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+        {include file="public/setting"}
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- All Required js -->
+    <!-- ============================================================== -->
+    {include file="public/footer"}
+    <script src="__Admin__/js/addint.js"></script>
+    
+</body>
+
+</html>

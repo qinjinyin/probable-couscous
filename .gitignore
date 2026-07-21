@@ -1,0 +1,7 @@
+/网站/runtime/
+/网站/vendor/
+.env
+*.log
+.DS_Store
+Thumbs.db
+/node_modules/

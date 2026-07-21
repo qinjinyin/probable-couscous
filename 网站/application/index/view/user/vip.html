@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+{include file="index@public/head"}
+
+<body>
+    {include file="index@public/menu"}
+    {include file="index@public/header"}
+    <div class="lime-container">
+        <div class="lime-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="page-title">
+                            <h3>开通会员</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    {volist name="viplist" id="vip"}
+                                    <div class="col-12 col-sm-6 col-md-4">
+                                        <ul class="pricing">
+                                            <li>
+                                                <h1><img src="{$vip.vip_img}" style="height: 25px;width: 25px">{$vip.vip_name}
+                                                    {eq name="vip.vip_is_tj" value="1"}
+                                                    <img src="__Home__/images/tuijian.png" style="height: 25px;width: 25px">
+                                                    {/eq}
+                                                </h1>
+                                            </li>
+                                            {$vip.vip_desc}
+                                            <li>
+                                                <h3 style="margin-top:0;">￥{$vip.vip_price}</h3>
+                                                <span>原价：￥{$vip.vip_pirce_old}</span>
+                                            </li>
+                                            <li>
+                                                <select id="paytype_{$vip.id}" class="form-control custom-select" id="exampleFormControlSelect1">
+                                                    <option value="">请选择</option>
+                                                    {volist name="payt" id="pay"}
+                                                    <option value="{$pay.pay_bs}">{$pay.pay_name}</option>
+                                                    {/volist}
+                                                </select>
+                                            </li>
+                                            <li>
+                                                <button type="button" 
+                                                onclick="ktvip('{$vip.id}')" 
+                                                class="btn btn-{eq name="vip.vip_is_tj" value="1" }primary{else/}secondary{/eq} btn-rounded">立即开通</button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    {/volist}
+                                    <div class="qr col-12" id="qr" style="display: none;">
+                                        <center>
+                                            <div id="alipaydmftext" style="display: none">请用支付宝或者截屏扫描一下二维码</div>
+                                        </center>
+                                        <center>
+                                            <div id="qrcode"></div>
+                                        </center>
+                                    </div>
+                                </div><!-- /row -->
+
+                            </div>
+
+                        </div>
+                        <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">卡密支付</h5>
+                                <div>
+                                    <br>
+                                    <input id="kami" class="form-control mr-sm-2" placeholder="在此输入您购买的卡密" value="">
+                                    <button class="btn btn-primary" id="bvip" style="width: 100%;margin-top: 10px;">购买</button>
+                                    <!-- <div id="jdata"></div> -->
+                                  
+                                </div>
+                                <br>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form name="alipayment" id="alipayment" action="pay/index" method="POST">
+            <input type="hidden" name="paytype" id="epaytype" value="">
+            <input type="hidden" name="id" id="epayid" value="">
+        </form>
+        <div class="lime-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <span class="footer-text">{$info.banquan}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Javascripts -->
+    {include file="index@public/footer"}
+    <script src="__Home__/js/qrcode.js"></script>
+    <script type="text/javascript">
+        $("#bvip").click(function(){
+            var kami = $("#kami").val();
+            if (kami=='') {
+                message('error', '卡密不能为空');
+                return false;
+            }
+            $.post("/pay/kmpay", { kami:kami }, function(data) {
+                
+                if (data.code == 1) {
+                    message('success', data.msg);
+                    
+                } else {
+                    message('error', data.msg);
+                }
+
+            })
+        })
+    </script>
+    <script type="text/javascript">
+    function ktvip(id) {
+        if (id == '') {
+            message('error', '错误的开通方式');
+            return false;
+        }
+        paytype = $("#paytype_" + id).val();
+
+        if (paytype == '') {
+            message('error', '请选择支付方式');
+            return false;
+        }
+        if (paytype == 'alipaydmf') {
+            $.post("/pay/index", { id: id, paytype: paytype }, function(data) {
+                var jdata = JSON.parse(data);
+                if (jdata.status == 100) {
+                    message('success', '订单创建成功，请扫码支付');
+                    $("#qrcode").html('');
+                    $("#qr").show();
+                    var qrcode = new QRCode(document.getElementById("qrcode"), {
+                        width: 210, //设置宽高
+                        height: 210
+                    });
+                    $("#alipaydmftext").show();
+                    location.href = '#qrcode';
+                    qrcode.makeCode(jdata.url);
+                    outTradeNo = jdata.orderid;
+                    totalAmount = jdata.price;
+
+                    getApi();
+                } else {
+                    message('error', data.msg);
+                }
+
+            })
+        }
+        if (paytype == 'ealipay') {
+            
+            $("#epayid").val(id);
+            $("#epaytype").val(paytype);
+            $("#alipayment").submit();
+        }
+        if (paytype == 'ewxpay') {
+            $("#epayid").val(id);
+            $("#epaytype").val(paytype);
+            $("#alipayment").submit();
+        }
+        if (paytype == 'eqqpay') {
+            $("#epayid").val(id);
+            $("#epaytype").val(paytype);
+            $("#alipayment").submit();
+        }
+    }
+
+    function getApi() {
+        //设置时间 5-秒  1000-毫秒  这里设置你自己想要的时间 
+        t = setTimeout(getApi, 5 * 1000);
+        $.ajax({
+            url: '/pay/alipayquery',
+            type: 'POST',
+            dataType: 'json',
+            data: { "outTradeNo": outTradeNo, "totalAmount": totalAmount, id: paytype },
+            success: function(data) {
+                var pdata = JSON.parse(data);
+                if (pdata.status == '102') {
+                    clearTimeout(t);
+                    message('success', pdata.msg);
+                    $("#qrcode").html("");
+                }
+
+            }
+        })
+    }
+    </script>

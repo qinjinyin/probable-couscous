@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {include file="public/head"}
+</head>
+
+<body>
+    <div class="main-wrapper" id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <div class="preloader">
+            <div class="loader">
+                <div class="loader__figure"></div>
+                <p class="loader__label">LanShou Admin</p>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        {include file="public/header"}
+        <!-- ============================================================== -->
+        <!-- Sidebar scss in sidebar.scss -->
+        <!-- ============================================================== -->
+        {include file="public/leftmenu"}
+        <!-- ============================================================== -->
+        <!-- Sidebar scss in sidebar.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Title and breadcrumb -->
+            <!-- ============================================================== -->
+            
+            <!-- ============================================================== -->
+            <!-- Container fluid scss in scafholding.scss -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Sales Summery -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col l3 m6 s12">
+                        <div class="card danger-gradient card-hover">
+                            <div class="card-content">
+                                <div class="d-flex no-block align-items-center">
+                                    <div>
+                                        <h2 class="white-text m-b-5">{$usercount}</h2>
+                                        <h6 class="white-text op-5 light-blue-text">用户总数</h6>
+                                    </div>
+                                    <div class="ml-auto">
+                                        <span class="white-text display-6"><i class="material-icons">perm_contact_calendar</i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col l3 m6 s12">
+                        <div class="card info-gradient card-hover">
+                            <div class="card-content">
+                                <div class="d-flex no-block align-items-center">
+                                    <div>
+                                        <h2 class="white-text m-b-5">{$ordercount}</h2>
+                                        <h6 class="white-text op-5">今日订单数</h6>
+                                    </div>
+                                    <div class="ml-auto">
+                                        <span class="white-text display-6"><i class="material-icons">receipt</i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     
+                    
+                    <div class="col l3 m6 s12">
+                        <div class="card success-gradient card-hover">
+                            <div class="card-content">
+                                <div class="d-flex no-block align-items-center">
+                                    <div>
+                                        <h2 class="white-text m-b-5">{$ispaycount}</h2>
+                                        <h6 class="white-text op-5 text-darken-2">平台总收入</h6>
+                                    </div>
+                                    <div class="ml-auto">
+                                        <span class="white-text display-6"><i class="material-icons">equalizer</i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="col l3 m6 s12">
+                        <div class="card warning-gradient card-hover">
+                            <div class="card-content">
+                                <div class="d-flex no-block align-items-center">
+                                    <div>
+                                        <h2 class="white-text m-b-5">{$apicount}</h2>
+                                        <h6 class="white-text op-5">接口总数</h6>
+                                    </div>
+                                    <div class="ml-auto">
+                                        <span class="white-text display-6"><i class="material-icons">move_to_inbox</i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <!-- ============================================================== -->
+                <!-- product sales anf active users -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col s12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <h5 class="card-title">最新注册用户</h5>
+                                        <h6 class="card-subtitle">默认展示最新注册的五个用户</h6>
+                                    </div>
+                                   
+                                </div>
+                                <div class="table-responsive m-b-20">
+                                    <table class="">
+                                        <thead>
+                                            <tr>
+                                                <th>id</th>
+                                                <th>邮箱</th>
+                                                <th>注册时间</th>
+                                                <th>Price</th>
+                                                
+                                                <th>状态</th>
+                                                
+                                               
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {volist name="userlist" id="user"}
+
+                                            <tr>
+                                                <td>{$user.id}</td>
+                                                <td>
+                                                    <div class="d-flex no-block align-items-center">
+                                                        <div class="m-r-10"><img src="__Admin__/images/users/d1.jpg" alt="user" class="circle" width="45" /></div>
+                                                        <div class="">
+                                                            <h5 class="m-b-0 font-16 font-medium">{$user.email}</h5><span>{$user.email}</span></div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <p class="">{$user.regtime|date='Y-m-d H:i:s',###}</p>
+                                                </td>
+                                                <td class="blue-grey-text text-darken-4 font-medium">{$user.reg_ip}</td>
+                                                
+                                                <td>
+                                                    {eq name="user.status" value="1"}
+                                                    <span class="label label-info">已验证</span>
+                                                    {/eq}
+                                                    {eq name="user.status" value="0"}
+                                                    <span class="label label-warning">待验证</span>
+                                                    {/eq}
+                                                </td>
+                                                
+                                            </tr>
+                                            {/volist}
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <a href="{:url('user/index')}"><i class="fas fa-angle-right"></i> 查看更多</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- Recent comment and chats -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col s12 m12 l6">
+                        <div class="card">
+                            <div class="card-content">
+                                <h5 class="card-title">小工具</h5>
+                                <button class="waves-effect waves-light btn blue" id="clearCache">清空缓存</button>
+                                <br><br>
+                                <p>当前域名：<span class="label cyan">{$_SERVER['HTTP_HOST']}</span></p>
+                                <p>源码来自：<span class="label error"><a href="https://www.qymao.cn">www.qymao.cn</a></span></p>
+                                <div id="tp-weather-widget"></div>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Recent comment -->
+                    <div class="col s12 m12 l6">
+                        <div class="card">
+                            <div class="card-content">
+                                <h5 class="card-title">官方公告</h5>
+                                <div class="comment-widgets scrollable" style="height:560px;">
+                                    <!-- Comment Row -->
+                                    {volist name="data" id="da"}
+                                    <div class="d-flex flex-row comment-row">
+                                        <div class="p-2"><img src="http://q1.qlogo.cn/g?b=qq&nk=592597603&s=640" alt="user" width="50" class="circle"></div>
+                                        <div class="comment-text w-100">
+                                            <h6 class="font-medium">{$da.upuser}</h6>
+                                            <span class="m-b-15 db">{$da.uplog}</span>
+                                            <div class="comment-footer">
+                                                <span class="text-muted right">{$da.uptime|date='Y-m-d H:i:s',###}</span> <span class="label label-info">来自官方</span> </div>
+                                        </div>
+                                    </div>
+                                    {/volist}
+                                    <!-- Comment Row -->
+                                    
+                                    <!-- Comment Row -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Recent chats -->
+                    
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- Container fluid scss in scafholding.scss -->
+            <!-- ============================================================== -->
+            <footer class="center-align m-b-30">Theme by <a href="https://www.qymao.cn">企业猫源码</a>.</footer>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+        {include file="public/setting"}
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    {include file="public/footer"}
+    
+
+    <script>(function(T,h,i,n,k,P,a,g,e){g=function(){P=h.createElement(i);a=h.getElementsByTagName(i)[0];P.src=k;P.charset="utf-8";P.async=1;a.parentNode.insertBefore(P,a)};T["ThinkPageWeatherWidgetObject"]=n;T[n]||(T[n]=function(){(T[n].q=T[n].q||[]).push(arguments)});T[n].l=+new Date();if(T.attachEvent){T.attachEvent("onload",g)}else{T.addEventListener("load",g,false)}}(window,document,"script","tpwidget","//widget.seniverse.com/widget/chameleon.js"))</script>
+<script>tpwidget("init", {
+    "flavor": "slim",
+    "location": "WX4FBXXFKE4F",
+    "geolocation": "enabled",
+    "language": "zh-chs",
+    "unit": "c",
+    "theme": "chameleon",
+    "container": "tp-weather-widget",
+    "bubble": "enabled",
+    "alarmType": "badge",
+    "uid": "U99066903B",
+    "hash": "3cadea165f265d8fe6dd518286ce585b"
+});
+tpwidget("show");</script>
+<script type="text/javascript">
+    $("#clearCache").click(function(){
+        $.ajax({
+        type: "post",
+        url: "/admin/index/clearCache",
+        dataType: "json",
+        data : { "id" :1},
+        async: true,
+        success: function(data) {
+            console.log(data);
+            if (data.code==1) {
+                 //window.location.href="你所要跳转的页面";
+                toastr.success(data.msg, '成功', { positionClass: 'toast-top-center', containerId: 'toast-top-center' });
+                //message('success', data.msg);
+                setTimeout(function() {
+                    location.href = data.url;
+                }, 1000);
+            }
+            if (data.code==0) {
+                toastr.info(data.msg, '警告', { positionClass: 'toast-top-center', containerId: 'toast-top-center' });
+                }
+            },
+            error: function() {
+                toastr.error('请检查你的网络', '错误', { positionClass: 'toast-top-center', containerId: 'toast-top-center' });
+                //message('error', '请检查你的网络');
+            }
+        
+    })
+    })
+</script>
+</body>
+
+</html>

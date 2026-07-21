@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+        <title>跳转提示-织梦科技短视频V2.0后台管理系统</title>
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <!-- App Icons -->
+        <link rel="shortcut icon" href="__Admin__/images/favicon.ico">
+
+        <!-- App css -->
+        <link href="__Admin__/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="__Admin__/css/icons.css" rel="stylesheet" type="text/css" />
+        <link href="__Admin__/css/style.css" rel="stylesheet" type="text/css" />
+
+    </head>
+
+
+    <body>
+
+        <!-- Loader -->
+        <div id="preloader"><div id="status"><div class="spinner"></div></div></div>
+
+        <!-- Begin page -->
+        <div class="accountbg"></div>
+        <div class="wrapper-page">
+
+            <div class="card">
+                <div class="card-block">
+
+                    <div class="ex-page-content text-center">
+                        <?php switch ($code) {?>
+                        <?php case 1:?>
+                        <!-- 成功 -->
+                        
+                        <center><img src="__Home__/images/success.png" style="text-align:center"></center>
+                        <center style="margin-top: 50px;">
+                            <h3><?php echo(strip_tags($msg));?><br></h3>
+                        </center>
+
+
+                        
+                        <?php break;?>
+                        <?php case 0:?>
+                        
+                        <!-- 错误 -->
+                        <center><img src="__Home__/images/error.png" style="text-align:center"></center>
+                        <center style="margin-top: 50px;">
+                            <h3><?php echo(strip_tags($msg));?><br></h3>
+                        </center>
+
+                       
+                        <?php break;?>
+                        <?php } ?>
+                        
+                         <p id="redirectUrlBtn" style="font-size: 20px;">5</p>
+                         <h5>如您的浏览器未跳转请点击👉<a href="<?php echo($url);?>">跳转</a>👈</h5>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="m-t-40 text-center">
+                
+                <p>© 2019 MS’s Product. creat with <i class="mdi mdi-heart text-danger"></i> by <a href="https://xx.muzzz.cn" class="font-500 font-14 text-primary font-secondary"> LanShou </a></p>
+            </div>
+
+        </div>
+
+
+        <!-- jQuery  -->
+        <script src="__Admin__/js/jquery.min.js"></script>
+        <script src="__Admin__/js/bootstrap.bundle.min.js"></script>
+        <script src="__Admin__/js/modernizr.min.js"></script>
+        <script src="__Admin__/js/waves.js"></script>
+        <script src="__Admin__/js/jquery.slimscroll.js"></script>
+        <script src="__Admin__/js/jquery.nicescroll.js"></script>
+        <script src="__Admin__/js/jquery.scrollTo.min.js"></script>
+
+        <!-- App js -->
+        <script src="__Admin__/js/app.js"></script>
+
+    </body>
+</html>

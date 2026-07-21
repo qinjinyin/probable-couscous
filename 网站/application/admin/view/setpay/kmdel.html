@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+{include file="public/head"}
+</head>
+
+<body>
+    <div class="main-wrapper" id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <div class="preloader">
+            <div class="loader">
+                <div class="loader__figure"></div>
+                <p class="loader__label">LanShou Admin</p>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        {include file="public/header"}
+        <!-- ============================================================== -->
+        <!-- Sidebar scss in sidebar.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Sidebar scss in sidebar.scss -->
+        <!-- ============================================================== -->
+        {include file="public/leftmenu"}
+        <!-- ============================================================== -->
+        <!-- Sidebar scss in sidebar.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Title and breadcrumb -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid scss in scafholding.scss -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col s12">
+                        <div class="card">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col s12">
+                                        <div class="card">
+                                            <form class="h-form b-form" id="formdata">
+                                                <div class="form-body">
+                                                    <div class="divider"></div>
+                                                    <div class="card-content">
+                                                        <h6 class="font-medium">卡密详细信息</h6>
+                                                        
+                                                        <div class="row">
+                                                            <div class="col s3">
+                                                                <div class="h-form-label">
+                                                                    <label for="l-name">卡密</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="input-field col s9">
+                                                                <span>{$kami.kami}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col s3">
+                                                                <div class="h-form-label">
+                                                                    <label for="email1">生成时间</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="input-field col s9">
+                                                                <span>{$kami.creattime|date='Y-m-d H:i:s',###}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col s3">
+                                                                <div class="h-form-label">
+                                                                    <label for="con1">是否使用/使用用户</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="input-field col s9">
+                                                                <span>
+                                                                    {neq name="kami.useuser" value="0"}{$user.email}{/neq}
+                                                                    {eq name="kami.useuser" value="0"}未使用{/eq}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col s3">
+                                                                <div class="h-form-label">
+                                                                    <label for="con1">使用时间</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="input-field col s9">
+                                                                <span>
+                                                                    {neq name="kami.usetime" value="0"}{$kami.usetime|date='Y-m-d H:i:s',###}{/neq}
+                                                                    {eq name="kami.usetime" value="0"}未使用{/eq}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col s3">
+                                                                <div class="h-form-label">
+                                                                    <label for="con1">卡密生成用户：</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="input-field col s9">
+                                                                <span>{$kami.creatuser}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                   
+                                                    <a onclick="javascript:history.go(-1);" class="btn waves-effect waves-light grey darken-4">返回
+                                                            </a>
+                                                    <div class="divider"></div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- Container fluid scss in scafholding.scss -->
+            <!-- ============================================================== -->
+            <footer class="center-align m-b-30">Theme by <a href="https://xx.muzzz.cn">LanShou</a>.</footer>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+        {include file="public/setting"}
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- All Required js -->
+    <!-- ============================================================== -->
+    {include file="public/footer"}
+    
+</body>
+
+</html>

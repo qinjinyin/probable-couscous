@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+{include file="public/head"}
+</head>
+
+<body>
+    <div class="main-wrapper" id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <div class="preloader">
+            <div class="loader">
+                <div class="loader__figure"></div>
+                <p class="loader__label">LanShou Admin</p>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        {include file="public/header"}
+        <!-- ============================================================== -->
+        <!-- Sidebar scss in sidebar.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Sidebar scss in sidebar.scss -->
+        <!-- ============================================================== -->
+        {include file="public/leftmenu"}
+        <!-- ============================================================== -->
+        <!-- Sidebar scss in sidebar.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Title and breadcrumb -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid scss in scafholding.scss -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col s12">
+                        <div class="card">
+
+                            <div class="card-content">
+                                <h5 class="card-title">会员列表</h5>
+                                <h6 class="card-subtitle">在此管理您网站的会员</h6>
+                                <a class="waves-effect waves-light btn red" href="{:url('user/delno')}">删除全部未激活用户</a>
+                                <table id="file_export" class="table table-striped table-bordered display">
+                                    <thead>
+                                        <tr>
+                                            <th>用户ID</th>
+                                            <th>用户邮箱</th>
+                                            <th>是否VIP</th>
+                                            <th>是否激活</th>
+                                            <th>剩余次数（当天）</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {volist name="userlist" id="vp"}
+                                        <tr>
+                                            <td>{$vp.id}</td>
+                                            <td>{$vp.email}</td>
+                                            <td>
+                                                {eq name="vp.is_vip" value="0"}<span class="label label-success">是</span>{/eq}
+                                                {eq name="vp.is_vip" value="1"}<span class="label label-warning">否</span>{/eq}
+                                            </td>
+                                            <td>
+                                                <div class="switch">
+                                                    <label>
+                                                        <input onchange="change_status(this,{$vp.id})" {if $vp.status==1}checked{/if} type="checkbox">
+                                                        <span class="lever"></span>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                {$vp.day_count}
+                                            </td>
+                                            <td>
+                                                <a class="waves-effect waves-light btn red" onclick="delete_user('{$vp.id}')">删除会员</a>
+                                            </td>
+                                        </tr>
+                                        {/volist}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- Container fluid scss in scafholding.scss -->
+            <!-- ============================================================== -->
+            <footer class="center-align m-b-30">Theme by <a href="https://xx.muzzz.cn">LanShou</a>.</footer>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+        {include file="public/setting"}
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- All Required js -->
+    <!-- ============================================================== -->
+    {include file="public/footer"}
+    <script type="text/javascript">
+    function delete_user(id) {
+        var flag = window.confirm("确实要永久删除该会员?注意此操作不可逆");
+        if (flag == true) {
+            $.ajax({
+                type: "post",
+                url: "/admin/user/deleteuser",
+                dataType: "json",
+                data: { "id": id },
+                async: true,
+                success: function(data) {
+                    console.log(data);
+                    if (data.code == 1) {
+                        //window.location.href="你所要跳转的页面";
+                        toastr.success(data.msg, '成功', { positionClass: 'toast-top-center', containerId: 'toast-top-center' });
+                        //message('success', data.msg);
+                        setTimeout(function() {
+                            location.href = data.url;
+                        }, 1000);
+                    }
+                    if (data.code == 0) {
+                        toastr.info(data.msg, '警告', { positionClass: 'toast-top-center', containerId: 'toast-top-center' });
+                    }
+                },
+                error: function() {
+                    toastr.error('请检查你的网络', '错误', { positionClass: 'toast-top-center', containerId: 'toast-top-center' });
+                    //message('error', '请检查你的网络');
+                }
+
+            })
+        }
+    }
+    function delete_all_user(id){
+
+    }
+    function change_status(obj, id) {
+        var status = $(obj).prop('checked');
+        if (status) {
+            status = 1;
+        } else {
+            status = 0;
+        }
+
+        $.post('/admin/user/changeStatus', {
+            id: id,
+            status: status
+        }, function(res) {
+            if (res.code != 0) {
+                $(obj).attr("checked", "true");
+                toastr.success(res.msg, '成功', { positionClass: 'toast-top-center', containerId: 'toast-top-center' });
+                $(obj).removeAttr("checked")
+                return false;
+            }
+            if (code == 1) {
+                $(obj).prop('checked', true)
+                
+            } else {
+                $(obj).prop('checked', false)
+            }
+        });
+    }
+    </script>
+</body>
+
+</html>

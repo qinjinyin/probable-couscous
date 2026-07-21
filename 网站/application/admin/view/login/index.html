@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="16x16" href="__Admin__/images/favicon.png">
+    <title>短视频解析V2.0-织梦科技后台管理系统</title>
+    <link href="__Admin__/dist/css/style.css" rel="stylesheet">
+    <!-- This page CSS -->
+    <link href="__Admin__/dist/css/pages/authentication.css" rel="stylesheet">
+    <!-- This page CSS -->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <div class="preloader">
+            <div class="loader">
+                <div class="loader__figure"></div>
+                <p class="loader__label">LanShou Admin</p>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Login box.scss -->
+        <!-- ============================================================== -->
+        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center" style="background:url(__Admin__/images/big/auth-bg.jpg) no-repeat center center;">
+            <div class="auth-box">
+                <div id="loginform">
+                    <div class="logo">
+                        <span class="db"><img src="__Admin__/images/logo-icon.png" alt="logo" /></span>
+                        <h5 class="font-medium m-b-20">欢迎使用</h5>
+                    </div>
+                    <!-- Form -->
+                    <div class="row">
+                       
+                            <!-- email -->
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="username" type="text" class="validate" required>
+                                    <label for="username">账号</label>
+                                </div>
+                            </div>
+                            <!-- pwd -->
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="password" type="password" class="validate" required>
+                                    <label for="password">密码</label>
+                                </div>
+                            </div>
+                            <!-- pwd -->
+                            <div class="row m-t-5">
+                                <div class="col s7">
+                                    <label>
+                                        <input type="checkbox" />
+                                        <span>记住密码?</span>
+                                    </label>
+                                </div>
+                                <!-- <div class="col s5 right-align"><a href="#" class="link" id="to-recover">Forgot Pwd?</a></div> -->
+                            </div>
+                            <!-- pwd -->
+                            <div class="row m-t-40">
+                                <div class="col s12">
+                                    <button class="btn-large w100 blue accent-4" type="button" id="login">登入</button>
+                                </div>
+                            </div>
+                        
+                    </div>
+                   
+                    <div class="center-align m-t-20 db">
+                        made in <a href="https://xx.muzzz.cn">LanShou!</a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+   
+    <script src="__Admin__/libs/jquery/dist/jquery.min.js"></script>
+    <script src="__Admin__/dist/js/materialize.min.js"></script>
+    <script src="__Admin__/js/modal_dialog.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $(".preloader").fadeOut();
+        });
+    </script>
+    <script type="text/javascript">
+       
+            $("#login").click(function(){
+                var username = $("#username").val();
+                var password = $("#password").val();
+                if (username=='') {
+                    message('error','用户名不能为空');
+                    return false;
+                }
+                if (password=='') {
+                    message('error','密码不能为空');
+                    return false;
+                }
+                $.ajax({
+                type: "post",
+                url: "{:url('ajaxlogin')}",
+                dataType: "json",
+                data : { "username" :username,"password" :password},
+                async: true,
+                success: function(data) {
+                    
+                    console.log(data);
+                    if (data.code==1) {
+                        //window.location.href="你所要跳转的页面";
+                        message('success', data.msg);
+                        setTimeout(function() {
+                            location.href = data.url;
+                        }, 1000);
+                    }
+                    if (data.code==0) {
+
+                        message('error', data.msg);
+                    }
+                },
+                error: function() {
+                    
+                    message('error', '请检查你的网络');
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

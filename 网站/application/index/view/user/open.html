@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{include file="index@public/head"}
+
+<body>
+    {include file="index@public/menu"}
+    {include file="index@public/header"}
+
+    <div class="lime-container">
+            <div class="lime-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="page-title">
+                                
+                                <h3>接口开发文档</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5>去水印接口</h5>
+                                    <table class="table table-borderless">
+                                        <thead class="thead">
+                                            <tr>
+                                                <th scope="col">请求地址：<code>http(s)://dspjx.bheddp.cn/api/dsp/{clientSecretKey}/{clientId}/?url={短视频链接，记住是纯链接}</code></th>
+                                                
+                                            </tr>
+                                            <tr>
+                                                <th >请求方式：<code>GET</code></th>
+                                            </tr>
+                                            <tr>
+                                                <th >clientId：<code>（必填）</code>请在<a href="/getapi.html">/getapi.html</a>查看</th>
+                                               
+                                            </tr>
+                                            <tr>
+                                                <th >clientSecretKey：<code>（必填）</code>请在<a href="/getapi.html">/getapi.html</a>查看</th>
+                                               
+                                            </tr>
+                                            <tr>
+                                                <th >短视频链接：<code>（必填）</code>从app内复制出来的不带文字的纯http链接</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                    
+                                    <table class="table borderless ">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col">状态码</th>
+                                                <th scope="col">信息</th>
+                                                <th scope="col">建议</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>101</td>
+                                                <td>解析成功，接口会将返回<code>cover(封面),url(视频地址),title(标题)</code></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>103</td>
+                                                <td>请输入正确的链接</td>
+                                                <td>检查传入的<code>链接格式</code>是否正确</td>
+                                            </tr>
+                                            
+                                            <tr>
+                                                <td>104</td>
+                                                <td>接口不存在/暂停使用</td>
+                                                <td>该接口已<code>接口不存在/暂停使用</code></td>
+                                            </tr>
+                                            <tr>
+                                                <td>107</td>
+                                                <td>数据结构异常</td>
+                                                <td>请联系<code>系统管理员</code>检查后台设置</td>
+                                            </tr>
+                                            <tr>
+                                                <td>108</td>
+                                                <td>会员接口不存在</td>
+                                                <td>检查<code>用户ID</code>和<code>token</code>是否为空或是否正确</td>
+                                            </tr>
+                                            <tr>
+                                                <td>109</td>
+                                                <td>接口被系统管理员关闭</td>
+                                                <td>请联系<code>系统管理员</code>检查接口用户权限</td>
+                                            </tr>
+                                            <tr>
+                                                <td>110</td>
+                                                <td>次数不足</td>
+                                                <td>请升级<code>VIP</code>等级或明天再试</td>
+                                            </tr>
+                                            <tr>
+                                                <td>113</td>
+                                                <td>解析失败</td>
+                                                <td>请联系<code>系统管理员</code>更新/维护接口</td>
+                                            </tr>
+                                            <tr>
+                                                <td>115</td>
+                                                <td>会员等级不足</td>
+                                                <td>请联系<code>开通会员</code>或者升级<code>会员等级</code></td>
+                                            </tr>
+                                            
+                                        </tbody>
+                                    </table>       
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+            <div class="lime-footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="footer-text">{$info.banquan}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Javascripts -->
+    {include file="index@public/footer"}
+    

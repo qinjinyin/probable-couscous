@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+{include file="public/head"}
+</head>
+
+<body>
+    <div class="main-wrapper" id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <div class="preloader">
+            <div class="loader">
+                <div class="loader__figure"></div>
+                <p class="loader__label">LanShou Admin</p>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        {include file="public/header"}
+        <!-- ============================================================== -->
+        <!-- Sidebar scss in sidebar.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Sidebar scss in sidebar.scss -->
+        <!-- ============================================================== -->
+        {include file="public/leftmenu"}
+        <!-- ============================================================== -->
+        <!-- Sidebar scss in sidebar.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Title and breadcrumb -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid scss in scafholding.scss -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col s12">
+                        <div class="card">
+                            <div class="card-content">
+                                <h5 class="card-title">卡密管理</h5>
+                                <a class="waves-effect waves-light btn green" id="export">导出txt</a>
+                                <a class="waves-effect waves-light btn red" onclick="deluse()">一键删除已使用</a>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>卡密</th>
+                                            <th>会员等级</th>
+                                            <th>是否使用</th>
+                                            <th>生成时间</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {volist name='list' id='km'}
+                                        <tr>
+                                            <td>{$km.id}</td>
+                                            <td>{$km.kami}</td>
+                                            <td>
+                                                {eq name="km.vtype" value="1"}青铜<img src="/public/static/home/assets/vip/qtvip.png" style="height: 25px;width: 25px">{/eq}
+                                                {eq name="km.vtype" value="2"}白银<img src="/public/static/home/assets/vip/byvip.png" style="height: 25px;width: 25px">{/eq}
+                                                {eq name="km.vtype" value="3"}黄金<img src="/public/static/home/assets/vip/hjvip.png" style="height: 25px;width: 25px">{/eq}
+                                            </td>
+                                            <td>{empty name="km.useuser"}未使用{/empty}
+                                                {notempty name="km.useuser"}已使用{/notempty}
+                                            </td>
+                                            <td>
+                                                {$km.creattime|date='Y-m-d H:i:s',###}
+                                            </td>
+                                            <td>
+                                                <a class="waves-effect waves-light btn green" href="{:url('setpay/kmdel')}?id={$km.id}">详情</a>
+                                                <a class="waves-effect waves-light btn red" onclick="delkm('{$km.id}')">删除</a>
+                                            </td>
+                                        </tr>
+                                        {/volist}
+                                    </tbody>
+                                </table>
+                                {$list->render()}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- Container fluid scss in scafholding.scss -->
+            <!-- ============================================================== -->
+            <footer class="center-align m-b-30">Theme by <a href="https://xx.muzzz.cn">LanShou</a>.</footer>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+        {include file="public/setting"}
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- All Required js -->
+    <!-- ============================================================== -->
+    {include file="public/footer"}
+    <script type="text/javascript">
+    //导出按钮
+    $('#export').on('click', function() {
+        
+        //...这里省略全选id的代码
+        var json = { 'ids': 1 };
+        //使用ajax提交到后台
+        $.post('{:url("setpay/dctxt")}', json, function(data) {
+            if (data == "error") {
+                toastr.info('导出失败', '警告', { positionClass: 'toast-top-center', containerId: 'toast-top-center' });
+            } else {
+                var myDate = new Date;
+                var year = myDate.getFullYear(); //获取当前年
+                var mon = myDate.getMonth() + 1; //获取当前月
+                var date = myDate.getDate(); //获取当前日
+                //成功从后台获取数据后，调用createTxt()方法生成txt文件
+                var datee = mon+'-'+date;
+                download(datee + ".txt", data);
+            }
+        }, 'json');
+    });
+    /*
+      javascript生成txt文件，并直接在浏览器中弹出下载提示
+    */
+    function download(filename, text) {
+        var element = document.createElement('a');
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+        element.setAttribute('download', filename);
+        element.style.display = 'none';
+        document.body.appendChild(element);
+        element.click();
+        document.body.removeChild(element);
+    }
+    function delkm(id){
+        var flag=window.confirm("确实要永久删除该卡密吗？");
+            if(flag==true){
+                $.ajax({
+                    type: "post",
+                    url: "/admin/setpay/deletekami",
+                    dataType: "json",
+                    data : { "id" :id},
+                    async: true,
+                    success: function(data) {
+                        console.log(data);
+                        if (data.code==1) {
+                             //window.location.href="你所要跳转的页面";
+                            toastr.success(data.msg, '成功', { positionClass: 'toast-top-center', containerId: 'toast-top-center' });
+                            //message('success', data.msg);
+                            setTimeout(function() {
+                                location.href = data.url;
+                            }, 1000);
+                        }
+                        if (data.code==0) {
+                            toastr.info(data.msg, '警告', { positionClass: 'toast-top-center', containerId: 'toast-top-center' });
+                            }
+                        },
+                        error: function() {
+                            toastr.error('请检查你的网络', '错误', { positionClass: 'toast-top-center', containerId: 'toast-top-center' });
+                            //message('error', '请检查你的网络');
+                        }
+                    
+                })
+            }
+    }
+    function deluse()
+    {
+       var flag=window.confirm("确实要永久删除已使用卡密吗？");
+            if(flag==true){
+                $.ajax({
+                    type: "post",
+                    url: "/admin/setpay/deletekamiuse",
+                    dataType: "json",
+                    data : { "id" :1},
+                    async: true,
+                    success: function(data) {
+                        console.log(data);
+                        if (data.code==1) {
+                             //window.location.href="你所要跳转的页面";
+                            toastr.success(data.msg, '成功', { positionClass: 'toast-top-center', containerId: 'toast-top-center' });
+                            //message('success', data.msg);
+                            setTimeout(function() {
+                                location.href = data.url;
+                            }, 1000);
+                        }
+                        if (data.code==0) {
+                            toastr.info(data.msg, '警告', { positionClass: 'toast-top-center', containerId: 'toast-top-center' });
+                            }
+                        },
+                        error: function() {
+                            toastr.error('请检查你的网络', '错误', { positionClass: 'toast-top-center', containerId: 'toast-top-center' });
+                            //message('error', '请检查你的网络');
+                        }
+                    
+                })
+            } 
+    }
+    </script>
+</body>
+
+</html>

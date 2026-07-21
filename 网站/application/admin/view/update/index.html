@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+{include file="public/head"}
+</head>
+
+<body>
+    <div class="main-wrapper" id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <div class="preloader">
+            <div class="loader">
+                <div class="loader__figure"></div>
+                <p class="loader__label">LanShou Admin</p>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        {include file="public/header"}
+        <!-- ============================================================== -->
+        <!-- Sidebar scss in sidebar.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Sidebar scss in sidebar.scss -->
+        <!-- ============================================================== -->
+        {include file="public/leftmenu"}
+        <!-- ============================================================== -->
+        <!-- Sidebar scss in sidebar.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Title and breadcrumb -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid scss in scafholding.scss -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col s12">
+                        <div class="card">
+                            <div class="card-content">
+                                <h5 class="card-title">检查更新</h5>
+                                <p>只有获得正版授权的用户才能享受本系统所有功能以及在线更新功能</p>
+                                <form class="formValidate" id="formdata">
+                                    <div class="row">
+                                        
+                                        <div class="input-field col s12">
+                                          
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <span>当前系统版本：<span id="banb">{$bb}</span></span>
+                                        </div>
+                                        <input type="hidden" id="durl" value="">
+                                        <div class="input-field col s12" id="returnmsg">
+                                            
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- Container fluid scss in scafholding.scss -->
+            <!-- ============================================================== -->
+            <footer class="center-align m-b-30">Theme by <a href="https://xx.muzzz.cn">LanShou</a>.</footer>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+        {include file="public/setting"}
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- All Required js -->
+    <!-- ============================================================== -->
+    {include file="public/footer"}
+    <script type="text/javascript">
+    function formdata() {
+        var bb=$("#banb").text();
+        
+        if (bb=='') {
+            toastr.error('系统版本获取失败，请刷新当前页', '错误', { positionClass: 'toast-top-center', containerId: 'toast-top-center' });
+        }
+        $.ajax({
+            type: "post",
+            url: "/admin/update/checkup",
+            dataType: "json",
+            data: { "bb": bb},
+            async: true,
+            success: function(data) {
+                console.log(data);
+                if (data.code == 1) {
+                    //window.location.href="你所要跳转的页面";
+                    toastr.success(data.msg, '成功', { positionClass: 'toast-top-center', containerId: 'toast-top-center' });
+                    //message('success', data.msg);
+                    $("#returnmsg").html('云端最新版本：<span class="label label-success">'+data.data.bb+'</span><br><br>更新日志：<span class="label label-info">'+data.data.info+'</span>');
+                    if (data.data.downurl!='') {
+                        $("#durl").val(data.data.downurl);
+                        $("#returnmsg").html('云端最新版本：<span class="label label-success" id="bb">'+data.data.bb+'</span><br><br>更新日志：<span class="label label-info">'+data.data.info+'</span><br><br><button class="waves-effect waves-light btn green" type="button" onclick="update()" >立即更新</button>');
+                    }
+                }
+                if (data.code == 0) {
+                    toastr.info(data.msg, '警告', { positionClass: 'toast-top-center', containerId: 'toast-top-center' });
+                }
+            },
+            error: function() {
+                toastr.error('请检查你的网络', '错误', { positionClass: 'toast-top-center', containerId: 'toast-top-center' });
+                //message('error', '请检查你的网络');
+            }
+
+        })
+
+    }
+    function update()
+    {
+        var durl=$("#durl").val();
+       var bb=$("#bb").text();
+        if (durl=='') {
+            toastr.error('请先检查更新', '错误', { positionClass: 'toast-top-center', containerId: 'toast-top-center' });
+        }
+        $.ajax({
+            type: "post",
+            url: "/admin/update/update",
+            dataType: "json",
+            data: { "durl": durl,"bb":bb},
+            async: true,
+            success: function(data) {
+                console.log(data);
+                if (data.code == 1) {
+                    //window.location.href="你所要跳转的页面";
+                    toastr.success(data.msg, '成功', { positionClass: 'toast-top-center', containerId: 'toast-top-center' });
+                    
+                }
+                if (data.code == 0) {
+                    toastr.info(data.msg, '警告', { positionClass: 'toast-top-center', containerId: 'toast-top-center' });
+                }
+            },
+            error: function() {
+                toastr.error('请检查你的网络', '错误', { positionClass: 'toast-top-center', containerId: 'toast-top-center' });
+                
+            }
+
+        })
+
+    }
+    
+    </script>
+</body>
+
+</html>

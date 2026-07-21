@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{include file="index@public/head"}
+
+<body>
+    {include file="index@public/menu"}
+    {include file="index@public/header"}
+    <div class="lime-container">
+        <div class="lime-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="page-title">
+                            <h3>登录</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">用户登录</h5>
+                                <p>已经注册的用户可在此处登录. </p>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">邮箱地址</label>
+                                    <input type="email" class="form-control" id="mail" aria-describedby="emailHelp" placeholder="Enter email">
+                                    <small id="emailHelp" class="form-text text-muted">输入邮箱地址</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">密码</label>
+                                    <input type="password" class="form-control" id="pass" placeholder="输入你的密码">
+                                </div>
+                                <div class="custom-control custom-checkbox form-group">
+                                    <input type="checkbox" class="custom-control-input" id="exampleCheck1">
+                                    <label class="custom-control-label" for="exampleCheck1">记住我</label>
+                                </div>
+                               
+                                <button id="login" class="btn btn-primary">登录</button>
+                                <a href="/register.html" class="btn btn-secondary btn-rounded">没有账户点击注册</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" id="clicaptcha-submit-info" name="clicaptcha-submit-info">
+        <div class="lime-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <span class="footer-text">{$info.banquan}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Javascripts -->
+    {include file="index@public/footer"}
+    <script type="text/javascript">
+        $("#login").click(function(){
+            var mail=$("#mail").val();
+            var reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;//正则表达式验证是不是又想
+            isok= reg.test(mail);//true  false
+            var pass=$("#pass").val();
+            
+
+            if (mail=='') {
+                message('error', '邮箱不能为空');
+                return false;
+            }//终止运行
+            if (!isok) {
+                message('error', '邮箱格式错误');
+                return false;
+            }
+            if (pass=='') {
+                message('error', '密码不能为空');
+                return false;
+            }
+            $('#login').attr("disabled",true);
+            $("#login").html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>请稍后...');
+            $.ajax({
+                type: "post",
+                url: "ajaxlogin.html",
+                dataType: "json",
+                data : { "mail" :mail,"pass" :pass},
+                async: true,
+                success: function(data) {
+                    $("#login").html('登录');
+                    $('#login').removeAttr("disabled");
+                    console.log(data);
+                    if (data.code==1) {
+                        //window.location.href="你所要跳转的页面";
+                        message('success', data.msg);
+                        setTimeout(function() {
+                            location.href = data.url;
+                        }, 1000);
+                    }
+                    if (data.code==0) {
+
+                        message('error', data.msg);
+                    }
+                },
+                error: function() {
+                    $("#register").html('注册');
+                    message('error', '请检查你的网络');
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

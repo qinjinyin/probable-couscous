@@ -1,0 +1,103 @@
+<aside class="left-sidebar">
+            <ul id="slide-out" class="sidenav">
+                
+                <li>
+                    <ul class="collapsible">
+                        <li class="small-cap "><span class="hide-menu">仪表盘</span></li>
+                        <li {if $actionname == 'index' && $contrname == 'Index' } class="active" {/if}>
+                            
+                           <a href="/admin.html" class="collapsible-header" tabindex="0"><i class="material-icons">dashboard</i><span class="hide-menu"> 仪表盘 </span></a>
+                        </li>
+                        
+                        
+                        <li class="small-cap"><span class="hide-menu">功能</span></li>
+                        <li {if $actionname == 'index' && $contrname == 'Inf' } class="active" {/if}>
+                            <a href="javascript: void(0);" class="collapsible-header has-arrow"><i class="material-icons">move_to_inbox</i><span class="hide-menu"> 接口管理</span></a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li {if $actionname == 'index' && $contrname == 'Inf' } class="open" {/if}><a href="{:url('inf/index')}"><i class="material-icons">receipt</i><span class="hide-menu">API列表</span></a></li>
+                                    <li {if $actionname == 'addinf' && $contrname == 'Inf' } class="open" {/if}><a href="{:url('inf/addinf')}"><i class="material-icons">input</i><span class="hide-menu">新增API</span></a></li>
+                                    <li {if $actionname == 'huishou' && $contrname == 'Inf' } class="open" {/if}><a href="{:url('inf/huishou')}"><i class="material-icons">backspace</i><span class="hide-menu">回收站</span></a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li {if $actionname == 'index' && $contrname == 'Setpay' } class="active" {/if}>
+                            <a href="javascript: void(0);" class="collapsible-header has-arrow"><i class="material-icons">attach_money</i><span class="hide-menu"> 支付配置</span></a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li {if $actionname == 'index' && $contrname == 'Setpay' } class="open" {/if}><a href="{:url('Setpay/index')}"><i class="material-icons">collections_bookmark</i><span class="hide-menu">通道管理</span></a></li>
+                                    <li {if $actionname == 'huishou' && $contrname == 'Setpay' } class="open" {/if}><a href="{:url('Setpay/huishou')}"><i class="material-icons">backspace</i><span class="hide-menu">回收站</span></a></li>
+                                    <li {if $actionname == 'huishou' && $contrname == 'Setpay' } class="open" {/if}><a href="{:url('Setpay/setkm')}"><i class="material-icons">collections_bookmark</i><span class="hide-menu">生成卡密</span></a></li>
+                                    <li {if $actionname == 'huishou' && $contrname == 'Setpay' } class="open" {/if}><a href="{:url('Setpay/kmlist')}"><i class="material-icons">collections_bookmark</i><span class="hide-menu">卡密管理</span></a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        
+                        <li {if $actionname == 'index' && $contrname == 'Vip' } class="active" {/if}>
+                            <a href="{:url('Vip/index')}" class="collapsible-header"><i class="material-icons">face</i><span class="hide-menu"> 会员设置 </span></a>
+                        </li>
+                        <li class="small-cap"><span class="hide-menu">管理</span></li>
+                        <li  {if $actionname == 'index' && $contrname == 'User' } class="active" {/if}>
+                            <a href="javascript: void(0);" class="collapsible-header has-arrow"><i class="material-icons">people_outline</i><span class="hide-menu">用户管理 </span></a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    
+                                    <li {if $actionname == 'index' && $contrname == 'User' } class="open" {/if}><a href="{:url('User/index')}"><i class="material-icons">crop_3_2</i><span class="hide-menu">会员列表</span></a></li>
+                                    <li {if $actionname == 'wuser' && $contrname == 'User' } class="open" {/if}><a href="{:url('User/wuser')}"><i class="material-icons">drag_handle</i><span class="hide-menu">待验证列表</span></a></li>
+                                    
+                                </ul>
+                            </div>
+                        </li>
+                        <li {if $actionname == 'index' && $contrname == 'Order' } class="active" {/if}>
+                            <a href="javascript: void(0);" class="collapsible-header has-arrow"><i class="material-icons">credit_card</i><span class="hide-menu"> 订单管理 </span></a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li  {if $actionname == 'index' && $contrname == 'User' } class="open" {/if}><a href="{:url('Order/index')}"><i class="material-icons">layers</i><span class="hide-menu">全部订单</span></a></li>
+                                    <li  {if $actionname == 'noindex' && $contrname == 'User' } class="open" {/if}><a href="{:url('Order/noindex')}"><i class="material-icons">card_membership</i><span class="hide-menu">未支付订单</span></a></li>
+                                    
+                                </ul>
+                            </div>
+                        </li>
+                        <li {if $actionname == 'index' && $contrname == 'Gao' } class="active" {/if}>
+                            <a href="javascript: void(0);" class="collapsible-header has-arrow"><i class="material-icons">videogame_asset</i><span class="hide-menu"> 广告管理 </span></a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li {if $actionname == 'addgg' && $contrname == 'Gao' } class="open" {/if}><a href="{:url('Gao/addgg')}"><i class="material-icons">layers</i><span class="hide-menu">新增广告</span></a></li>
+                                    <li {if $actionname == 'index' && $contrname == 'Gao' } class="open" {/if}><a href="{:url('Gao/index')}"><i class="material-icons">card_membership</i><span class="hide-menu">广告列表</span></a></li>
+                                    
+                                </ul>
+                            </div>
+                        </li>
+                        
+                      
+                        <li class="small-cap"><span class="hide-menu">系统</span></li>
+                        <li {if $actionname == 'index' && $contrname == 'System' } class="active" {/if}>
+                            <a href="javascript: void(0);" class="collapsible-header has-arrow"><i class="material-icons">receipt</i><span class="hide-menu"> 系统设置 </span></a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li {if $actionname == 'index' && $contrname == 'System' } class="open" {/if}><a href="{:url('System/index')}"><i class="material-icons">format_indent_increase</i><span class="hide-menu">基础设置</span></a></li>
+                                    <li {if $actionname == 'uppass' && $contrname == 'System' } class="open" {/if}><a href="{:url('System/uppass')}"><i class="material-icons">check_circle</i><span class="hide-menu">修改密码</span></a></li>
+                                    <li {if $actionname == 'notice' && $contrname == 'System' } class="open" {/if}><a href="{:url('System/notice')}"><i class="material-icons">check_circle</i><span class="hide-menu">公告设置</span></a></li>
+                                    <li {if $actionname == 'mailconf' && $contrname == 'System' } class="open" {/if}><a href="{:url('System/mailconf')}"><i class="material-icons">check_circle</i><span class="hide-menu">邮件设置</span></a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        
+                        <li {if $actionname == 'webconf' && $contrname == 'System' } class="open" {/if}>
+                            <a href="{:url('System/webconf')}" class="collapsible-header"><i class="material-icons">assignment_late</i><span class="hide-menu"> 模块管理 </span></a>
+                        </li>
+                       
+                        
+                        <li {if $actionname == 'auth' && $contrname == 'System' } class="open" {/if}>
+                            <a href="{:url('System/auth')}" class="collapsible-header"><i class="material-icons">developer_board</i><span class="hide-menu"> 系统授权 </span></a>
+                        </li>
+                        <li {if $actionname == 'index' && $contrname == 'Update' } class="open" {/if}>
+                            <a href="{:url('Update/index')}" class="collapsible-header"><i class="material-icons">developer_board</i><span class="hide-menu"> 检查更新 </span></a>
+                        </li>
+                        <li>
+                            <a href="{:url('Index/loginout')}" class="collapsible-header"><i class="material-icons">directions</i><span class="hide-menu"> 退出登录 </span></a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </aside>
